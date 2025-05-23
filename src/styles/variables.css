@@ -1,0 +1,135 @@
+:root {
+  /* Hovedfarver - mere harmoniske */
+  --primary-color: #6366f1;
+  --secondary-color: #8b5cf6;
+  --accent-color: #f59e0b;
+
+  /* Karakterfarver - bedre kontrast */
+  --filo-color: #6366f1;
+  --etika-color: #059669;
+  --historikus-color: #d97706;
+  --logika-color: #2563eb;
+
+  /* Status farver */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+
+  /* Neutrale farver - bedre læsbarhed */
+  --text-dark: #1f2937;
+  --text-gray: #6b7280;
+  --text-light: #9ca3af;
+  --light-gray: #f3f4f6;
+  --medium-gray: #d1d5db;
+  --dark-gray: #374151;
+
+  /* Baggrunde - mere harmoniske */
+  --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --bg-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --bg-warning: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+
+  /* Lyse versioner til hover-effekter */
+  --primary-light: rgba(99, 102, 241, 0.1);
+  --secondary-light: rgba(139, 92, 246, 0.1);
+  --success-light: rgba(16, 185, 129, 0.1);
+  --error-light: rgba(239, 68, 68, 0.1);
+
+  /* Skygger */
+  --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
+
+  /* Border radius */
+  --radius-small: 8px;
+  --radius-medium: 12px;
+  --radius-large: 20px;
+  --radius-xl: 30px;
+  --radius-full: 50%;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Typography */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Z-index layers */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Grid breakpoints */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  /* Character-specific gradients - opdaterede farver */
+  --filo-gradient: linear-gradient(45deg, #6366f1, #8b5cf6);
+  --etika-gradient: linear-gradient(45deg, #059669, #10b981);
+  --historikus-gradient: linear-gradient(45deg, #d97706, #f59e0b);
+  --logika-gradient: linear-gradient(45deg, #2563eb, #3b82f6);
+
+  /* Level colors */
+  --level-1: #10b981;
+  --level-2: #3b82f6;
+  --level-3: #8b5cf6;
+  --level-4: #f59e0b;
+  --level-5: #ef4444;
+  --level-max: #dc2626;
+
+  /* Mere levende farver for børn */
+  --primary-color: #7c3aed; /* Lilla - mere levende */
+  --secondary-color: #ec4899; /* Pink */
+  --accent-color: #f59e0b; /* Orange */
+
+  /* Karakterfarver - mere mættede */
+  --filo-color: #8b5cf6;
+  --etika-color: #10b981;
+  --historikus-color: #f97316;
+  --logika-color: #3b82f6;
+
+  /* Tilføj flere legende farver */
+  --fun-yellow: #fcd34d;
+  --fun-green: #34d399;
+  --fun-blue: #60a5fa;
+  --fun-red: #f87171;
+
+  /* Større border radius for mere legende look */
+  --radius-small: 12px;
+  --radius-medium: 16px;
+  --radius-large: 24px;
+  --radius-xl: 32px;
+}
