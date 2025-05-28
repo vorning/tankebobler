@@ -1,4 +1,4 @@
-/* HomePage Styling */
+/* HomePage Styling med Sofie Integration */
 .home-page {
   padding: 20px 0;
   min-height: calc(100vh - 70px);
@@ -92,6 +92,15 @@
   background: linear-gradient(90deg, #7C3AED, #EC4899, #F59E0B, #10B981, #3B82F6);
   background-size: 200% 100%;
   animation: rainbow 3s ease-in-out infinite;
+}
+
+/* Sofie-specifik gradient text - gul/guld tema */
+.gradient-text.sofie {
+  background: linear-gradient(45deg, #F59E0B, #FBBF24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 .emoji-bounce {
@@ -351,6 +360,12 @@
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.1) 100%);
 }
 
+/* Sofie-themed stat cards */
+.stat-card.stat-sofie {
+  border-color: #F59E0B;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));
+}
+
 .stat-sparkle {
   position: absolute;
   top: 10px;
@@ -420,6 +435,51 @@
   justify-content: center;
 }
 
+/* Sofie Wisdom Quote Section */
+.wisdom-quote {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border: 2px solid #F59E0B;
+  border-radius: 20px;
+  padding: 24px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wisdom-quote::before {
+  content: '💭';
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.wisdom-quote::after {
+  content: '✨';
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.wisdom-quote p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #92400E;
+  margin: 0;
+  font-style: italic;
+}
+
+.wisdom-quote .author {
+  font-size: 14px;
+  color: #B45309;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
 /* Daily Challenge */
 .daily-challenge {
   margin-bottom: 32px;
@@ -458,6 +518,15 @@
   50% { background-position: 100% 50%; }
 }
 
+/* Sofie-themed daily challenge */
+.daily-challenge.sofie-theme .challenge-card {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border-color: #F59E0B;
+}
+
+.daily-challenge.sofie-theme .challenge-icon {
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+}
 
 .gradient-border {
   position: relative;
@@ -1000,6 +1069,27 @@
   color: var(--primary-color);
 }
 
+/* Sofie-specific animations */
+@keyframes sofie-sparkle {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+  }
+  50% { 
+    transform: translateY(-4px) rotate(2deg);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  }
+}
+
+.sofie-interactive:hover {
+  animation: sofie-bounce 0.6s ease-in-out;
+}
+
+@keyframes sofie-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 /* Animation Classes */
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out;
@@ -1139,6 +1229,15 @@
  
   .section-title {
     font-size: 24px;
+  }
+
+  .wisdom-quote {
+    padding: 20px;
+    margin: 24px 0;
+  }
+
+  .wisdom-quote p {
+    font-size: 16px;
   }
  }
  
@@ -1288,6 +1387,19 @@
   .action-arrow {
     font-size: 20px;
   }
+
+  .wisdom-quote {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .wisdom-quote p {
+    font-size: 14px;
+  }
+
+  .wisdom-quote .author {
+    font-size: 12px;
+  }
  }
  
  /* Loading Screen Styles */
@@ -1402,13 +1514,16 @@
   .floating-bubbles,
   .hero-character,
   .path-character,
-  .action-arrow {
+  .action-arrow,
+  .wisdom-quote::before,
+  .wisdom-quote::after {
     display: none;
   }
   
   .hero-section,
   .path-card,
-  .action-card {
+  .action-card,
+  .wisdom-quote {
     box-shadow: none;
     border: 1px solid #ddd;
   }

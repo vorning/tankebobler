@@ -99,6 +99,72 @@ const LessonPage = () => {
     }
   };
 
+  // Karakterspecifikke dialoger baseret på læsefremskridt
+  const getCharacterDialogue = () => {
+    if (!currentPath) return "";
+
+    const characterName = currentPath.character;
+
+    if (readingProgress < 30) {
+      switch (characterName) {
+        case "filo":
+          return "Hej! Jeg er så glad for at udforske filosofiens mysterier sammen med dig! Tag din tid til at tænke over det, du læser. 🤔";
+        case "etika":
+          return "Velkommen! De etiske spørgsmål kan være udfordrende, så læs roligt og tænk over dine egne værdier undervejs. ⚖️";
+        case "historikus":
+          return "Velkommen, unge tidsrejsende! Lad os sammen udforske fortiden og lære af de vise mennesker gennem historien. 📚";
+        default:
+          return "Tag din tid til at læse og forstå indholdet. Der er ingen grund til at skynde sig!";
+      }
+    } else if (readingProgress < 70) {
+      switch (characterName) {
+        case "filo":
+          return "Du klarer det fantastisk! Kan du mærke, hvordan filosofien åbner din hjerne for nye tanker? Vi er godt på vej! 💭";
+        case "etika":
+          return "Godt gået! De svære valg er ikke nemme at tænke over, men du håndterer det flot. Fortsæt bare! 💪";
+        case "historikus":
+          return "Fremragende! Du følger godt med i vores rejse gennem tiden. Historien har så meget at lære os! ⏰";
+        default:
+          return "Du klarer det godt! Fortsæt med at læse - vi er næsten færdige.";
+      }
+    } else if (readingProgress < 100) {
+      switch (characterName) {
+        case "filo":
+          return "Wow! Du tænker virkelig som en ægte filosof nu! Bare lidt endnu, så er du klar til at teste din nye visdom! 🌟";
+        case "etika":
+          return "Imponerende! Du har virkelig tænkt dybt over disse etiske dilemmaer. Nu mangler vi bare det sidste stykke! 🎯";
+        case "historikus":
+          return "Vidunderligt! Du har rejst godt med gennem historien. Snart har vi nået vores destination! 🏰";
+        default:
+          return "Næsten færdig! Du gør det rigtig godt!";
+      }
+    } else {
+      if (lesson.quiz) {
+        switch (characterName) {
+          case "filo":
+            return "Fantastisk! Nu har du lært filosofiens hemmeligheder! Er du klar til at teste din nye visdom med min quiz? Jeg tror, du vil klare det fantastisk! 🧠✨";
+          case "etika":
+            return "Perfekt! Du har nu stiftet bekendtskab med etikkens udfordringer. Tid til at se, hvor godt du kan navigere i de moralske valg - er du klar til min quiz? ⚖️🎯";
+          case "historikus":
+            return "Fremragende, min unge tidsrejsende! Du har nu besøgt fortiden og mødt vise tænkere. Lad os se, hvor meget visdom du har taget med dig - quiz-tiden er kommet! 📜🏆";
+          default:
+            return "Fantastisk! Nu er du klar til at teste din viden med en quiz. Tror du, du kan klare det?";
+        }
+      } else {
+        switch (characterName) {
+          case "filo":
+            return "Vidunderligt! Du har nu udvidet din filosofiske horisont! Filosofi handler om livslang læring, så fortsæt med at stille spørgsmål! 🚀";
+          case "etika":
+            return "Flot arbejde! Du har nu værktøjerne til at tænke over svære etiske valg. Husk: Det vigtigste er at tænke omhyggeligt før du handler! 🌱";
+          case "historikus":
+            return "Fremragende! Du har nu lært af fortiden. Husk: 'De, der ikke lærer af historien, er dømt til at gentage den.' På til nye opdagelser! ⭐";
+          default:
+            return "Flot! Du har gennemført denne lektion. Klar til den næste udfordring?";
+        }
+      }
+    }
+  };
+
   if (!lesson || !currentPath) {
     return (
       <div className="lesson-loading">
@@ -166,7 +232,7 @@ const LessonPage = () => {
             <div className="lesson-meta">
               <div className="meta-item">
                 <Clock size={16} />
-                <span>~20 min</span>
+                <span>~15 min</span>
               </div>
               <div className="meta-item">
                 <Star size={16} />
@@ -236,15 +302,16 @@ const LessonPage = () => {
                                 {option.text}
                               </button>
                               <p className="choice-reasoning">
-                                {option.reasoning}
+                                <strong>Tankegang:</strong> {option.reasoning}
                               </p>
                             </div>
                           ))}
                           <div className="activity-discussion">
-                            <p>
-                              <strong>Diskussion:</strong>{" "}
-                              {section.activity.discussion}
-                            </p>
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: section.activity.discussion,
+                              }}
+                            />
                           </div>
                         </div>
                       )}
@@ -280,18 +347,10 @@ const LessonPage = () => {
             </div>
           )}
 
-          {/* Character speech */}
+          {/* Character speech med karakterspecifikke dialoger */}
           <div className="character-speech animate-slide-in-up animate-delay-400">
             <div className="speech-bubble">
-              <p>
-                {readingProgress < 50
-                  ? "Tag din tid til at læse og forstå indholdet. Der er ingen grund til at skynde sig!"
-                  : readingProgress < 100
-                  ? "Du klarer det godt! Fortsæt med at læse - vi er næsten færdige."
-                  : lesson.quiz
-                  ? "Fantastisk! Nu er du klar til at teste din viden med en quiz. Tror du, du kan klare det?"
-                  : "Flot! Du har gennemført denne lektion. Klar til den næste udfordring?"}
-              </p>
+              <p>{getCharacterDialogue()}</p>
             </div>
             <CharacterAvatar
               character={currentPath.character}
@@ -330,7 +389,13 @@ const LessonPage = () => {
                 className="btn btn-primary btn-large"
               >
                 <Trophy size={20} />
-                Start Quiz
+                {currentPath.character === "filo" && "Start Filos Quiz"}
+                {currentPath.character === "etika" && "Start Etikas Quiz"}
+                {currentPath.character === "historikus" &&
+                  "Start Historikus' Quiz"}
+                {!["filo", "etika", "historikus"].includes(
+                  currentPath.character
+                ) && "Start Quiz"}
               </button>
             )}
 
@@ -339,7 +404,16 @@ const LessonPage = () => {
                 <div className="result-summary">
                   <Trophy size={24} />
                   <div>
-                    <h3>Quiz gennemført!</h3>
+                    <h3>
+                      {currentPath.character === "filo" &&
+                        "Filosofisk topresultat! 🧠"}
+                      {currentPath.character === "etika" && "Etisk ekspert! ⚖️"}
+                      {currentPath.character === "historikus" &&
+                        "Historisk helt! 📚"}
+                      {!["filo", "etika", "historikus"].includes(
+                        currentPath.character
+                      ) && "Quiz gennemført!"}
+                    </h3>
                     <p>
                       {quizResult.correctAnswers}/{quizResult.totalQuestions}{" "}
                       rigtige svar
@@ -366,7 +440,17 @@ const LessonPage = () => {
             {lessonCompleted && (
               <div className="lesson-completed-badge">
                 <CheckCircle size={20} />
-                <span>Lektion gennemført!</span>
+                <span>
+                  {currentPath.character === "filo" &&
+                    "Filosofisk mission fuldført! 🎓"}
+                  {currentPath.character === "etika" &&
+                    "Etisk udfordring mestret! 🏆"}
+                  {currentPath.character === "historikus" &&
+                    "Historisk opdagelse afsluttet! ⭐"}
+                  {!["filo", "etika", "historikus"].includes(
+                    currentPath.character
+                  ) && "Lektion gennemført!"}
+                </span>
                 <div className="xp-earned">
                   <Star size={16} />
                   <span>+{lesson.xpReward} XP</span>

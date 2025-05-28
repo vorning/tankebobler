@@ -1,534 +1,783 @@
 /* AchievementsPage Styling */
 .achievements-page {
-    padding: 20px 0;
-    min-height: calc(100vh - 70px);
-    font-family: 'Fredoka', sans-serif;
+  padding: 20px 0;
+  min-height: calc(100vh - 70px);
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Header Section */
+.achievements-header {
+  margin-bottom: 40px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 24px;
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.header-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 24px 24px 0 0;
+}
+
+.header-text h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: 'Fredoka', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-text h1::before {
+  content: '🏆';
+  font-size: 32px;
+}
+
+.header-text p {
+  font-size: 16px;
+  color: var(--text-gray);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.achievements-stats {
+  display: flex;
+  gap: 16px;
+  min-width: 500px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid transparent;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7C3AED, #EC4899);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-dark);
+  font-weight: 500;
+  margin-top: 2px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.stat-detail {
+  font-size: 12px;
+  color: var(--text-gray);
+  margin-top: 2px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.completion-progress {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-dark);
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+  background: #F3F4F6;
+  border-radius: 12px;
+  height: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F59E0B, #FBBF24);
+  border-radius: 12px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.progress-fill.achievements-progress-animated {
+  animation: achievementsProgressFillUp 2s ease-out forwards;
+}
+
+@keyframes achievementsProgressFillUp {
+  0% {
+    width: 0% !important;
   }
-  
-  /* Header Section */
-  .achievements-header {
-    margin-bottom: 40px;
+  100% {
+    /* Width will be set by inline style */
   }
-  
-  .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-    margin-bottom: 24px;
-  }
-  
-  .header-text h1 {
-    font-size: 36px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 8px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .header-text p {
-    font-size: 16px;
-    color: white;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .achievements-stats {
-    display: flex;
-    gap: 16px;
-    min-width: 500px;
-  }
-  
-  .completion-progress {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .progress-text {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--text-dark);
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  /* Progress Bar Styling */
-  .progress-bar {
-    background: #f0f0f0;
-    border-radius: 12px;
-    height: 12px;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #F59E0B, #FBBF24);
-    border-radius: 12px;
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-  
-  .progress-fill.achievements-progress-animated {
-    animation: achievementsProgressFillUp 2s ease-out forwards;
-  }
-  
-  @keyframes achievementsProgressFillUp {
-    0% {
-      width: 0% !important;
-    }
-    100% {
-      /* Width will be set by inline style */
-    }
-  }
-  
-  /* Category Filter */
-  .category-filter {
-    margin-bottom: 32px;
-  }
-  
-  .filter-tabs {
-    display: flex;
-    gap: 8px;
-    background: white;
-    border-radius: 16px;
-    padding: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
-  }
-  
-  .filter-tab {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 12px;
-    background: transparent;
-    color: var(--text-gray);
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    position: relative;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .filter-tab:hover {
-    background: var(--primary-light);
-    color: var(--primary-color);
-  }
-  
-  .filter-tab.active {
-    background: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
-  }
-  
-  .tab-count {
-    background: rgba(255, 255, 255, 0.2);
-    color: inherit;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    min-width: 20px;
-    text-align: center;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .filter-tab.active .tab-count {
-    background: rgba(255, 255, 255, 0.3);
-  }
-  
-  /* Achievements Groups */
-  .achievements-group {
-    margin-bottom: 40px;
-  }
-  
-  .group-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 24px;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 20px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  /* Achievements Grid */
-  .achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  .achievement-card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    border: 2px solid transparent;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .achievement-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  .achievement-card.unlocked {
-    border-color: var(--success-color);
-  }
-  
-  .achievement-card.locked {
-    opacity: 0.7;
-    background: #f8f9fa;
-  }
-  
-  /* Achievement Header */
-  .achievement-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
-  
-  .achievement-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .achievement-icon.locked-icon {
-    background: var(--medium-gray);
-  }
-  
-  .rarity-badge {
-    padding: 4px 8px;
-    border-radius: 8px;
-    color: white;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .rarity-badge.locked-rarity {
-    opacity: 0.5;
-  }
-  
-  /* Achievement Content */
-  .achievement-content h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 8px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .achievement-content p {
-    color: var(--text-gray);
-    line-height: 1.4;
-    margin-bottom: 12px;
-    font-size: 14px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .achievement-reward {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--warning-color);
-    font-weight: 500;
-    font-size: 14px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .achievement-reward.locked-reward {
-    opacity: 0.6;
-  }
-  
-  /* Achievement Status */
-  .achievement-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--light-gray);
-    font-weight: 500;
-    font-size: 14px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .unlocked-status {
-    color: var(--success-color);
-  }
-  
-  .locked-status {
-    color: var(--medium-gray);
-  }
-  
-  /* Locked Overlay */
-  .locked-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--medium-gray);
+}
+
+/* Category Filter */
+.category-filter {
+  margin-bottom: 32px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  background: white;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.filter-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-gray);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.filter-tab:hover {
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--primary-color);
+}
+
+.filter-tab.active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
+.tab-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.filter-tab.active .tab-count {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Achievements Groups */
+.achievements-group {
+  margin-bottom: 40px;
+}
+
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  font-family: 'Fredoka', sans-serif;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Achievements Grid */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.achievement-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  border: 2px solid #E5E7EB;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.achievement-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.achievement-card.unlocked {
+  border-color: var(--success-color);
+}
+
+.achievement-card.unlocked::after {
+  content: '✓';
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  background: var(--success-color);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.achievement-card.locked {
+  opacity: 0.7;
+  background: #f8f9fa;
+  border-color: #E5E7EB;
+}
+
+.achievement-card.locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 19px;
+  right: 16px;
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+/* Achievement Header */
+.achievement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.achievement-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover .achievement-icon {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.achievement-icon.locked-icon {
+  background: var(--medium-gray);
+  box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
+}
+
+.rarity-badge {
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Fredoka', sans-serif;
+  margin-right: 30px;
+
+}
+
+.rarity-badge.locked-rarity {
+  opacity: 0.5;
+  background: #9CA3AF !important;
+}
+
+/* Rarity Colors - Mere afdæmpede */
+.rarity-badge.common,
+.achievement-icon.common {
+  background: #6B7280;
+}
+
+.rarity-badge.uncommon,
+.achievement-icon.uncommon {
+  background: #10B981;
+}
+
+.rarity-badge.rare,
+.achievement-icon.rare {
+  background: #3B82F6;
+}
+
+.rarity-badge.epic,
+.achievement-icon.epic {
+  background: #8B5CF6;
+}
+
+.rarity-badge.legendary,
+.achievement-icon.legendary {
+  background: #F59E0B;
+}
+
+/* Achievement Content */
+.achievement-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.achievement-content p {
+  color: var(--text-gray);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.achievement-reward {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #F59E0B;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'Fredoka', sans-serif;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.achievement-reward.locked-reward {
+  opacity: 0.6;
+  background: rgba(156, 163, 175, 0.1);
+  color: var(--medium-gray);
+}
+
+/* Achievement Status */
+.achievement-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--light-gray);
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.unlocked-status {
+  color: var(--success-color);
+}
+
+.locked-status {
+  color: var(--medium-gray);
+}
+
+/* Locked Overlay */
+.locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--medium-gray);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.locked-overlay .lock-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.locked-overlay .lock-text {
+  font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.achievement-card.locked:hover .locked-overlay {
+  opacity: 1;
+}
+
+/* Encouragement Section */
+.encouragement-section {
+  margin-bottom: 32px;
+}
+
+.encouragement-card {
+  background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+  border-radius: 20px;
+  padding: 32px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.encouragement-character {
+  flex-shrink: 0;
+}
+
+.encouragement-content h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.encouragement-content p {
+  opacity: 0.95;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.next-achievement h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.next-achievement-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.next-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.next-name {
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.next-desc {
+  opacity: 0.8;
+  font-size: 12px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Rarity Guide */
+.rarity-guide {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.rarity-guide h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  font-family: 'Fredoka', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rarity-guide h3::before {
+  content: '💎';
+  font-size: 20px;
+}
+
+.rarity-items {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rarity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-gray);
+  font-family: 'Fredoka', sans-serif;
+  padding: 6px 12px;
+  background: rgba(124, 58, 237, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.rarity-item:hover {
+  transform: translateY(-1px);
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.rarity-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.rarity-color.common {
+  background: #6B7280;
+}
+
+.rarity-color.uncommon {
+  background: #10B981;
+}
+
+.rarity-color.rare {
+  background: #3B82F6;
+}
+
+.rarity-color.epic {
+  background: #8B5CF6;
+}
+
+.rarity-color.legendary {
+  background: #F59E0B;
+}
+
+/* Animation Classes */
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.6s ease-out;
+}
+
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Keyframe Animations */
+@keyframes slideInUp {
+  from {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: translateY(30px);
   }
-  
-  .achievement-card.locked:hover .locked-overlay {
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Encouragement Section */
-  .encouragement-section {
-    margin-bottom: 32px;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
   }
-  
-  .encouragement-card {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    border-radius: 20px;
-    padding: 32px;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
-    font-family: 'Fredoka', sans-serif;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .encouragement-character {
-    flex-shrink: 0;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  
-  .encouragement-content h3 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-family: 'Fredoka', sans-serif;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .encouragement-content p {
-    opacity: 0.9;
-    line-height: 1.5;
-    margin-bottom: 16px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .next-achievement h4 {
-    font-size: 16px;
-    margin-bottom: 8px;
-    opacity: 0.9;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .next-achievement-preview {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 12px;
-  }
-  
-  .next-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .next-info {
-    display: flex;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
     flex-direction: column;
+    gap: 24px;
   }
-  
-  .next-name {
-    font-weight: 600;
-    font-size: 14px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .next-desc {
-    opacity: 0.8;
-    font-size: 12px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  /* Rarity Guide */
-  .rarity-guide {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .rarity-guide h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 16px;
-    font-family: 'Fredoka', sans-serif;
-  }
-  
-  .rarity-items {
-    display: flex;
-    gap: 16px;
+
+  .achievements-stats {
+    min-width: auto;
+    width: 100%;
     flex-wrap: wrap;
   }
-  
-  .rarity-item {
-    display: flex;
-    align-items: center;
+
+  .filter-tabs {
+    justify-content: flex-start;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .group-title {
+    font-size: 20px;
+    padding: 12px 16px;
+  }
+
+  .encouragement-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rarity-items {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievements-page {
+    padding: 16px 0;
+  }
+
+  .header-text h1 {
+    font-size: 28px;
+  }
+
+  .achievement-card {
+    padding: 16px;
+  }
+
+  .achievement-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .encouragement-card {
+    padding: 24px;
+  }
+
+  .stat-card {
+    padding: 16px;
     gap: 8px;
-    font-size: 14px;
-    color: var(--text-gray);
-    font-family: 'Fredoka', sans-serif;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stat-number {
+    font-size: 20px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
   
-  .rarity-color {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
+  .achievement-card:hover,
+  .stat-card:hover,
+  .filter-tab:hover {
+    transform: none;
   }
-  
-  /* Animation Classes */
-  .animate-slide-in-up {
-    animation: slideInUp 0.6s ease-out;
-  }
-  
-  .animate-slide-in-left {
-    animation: slideInLeft 0.6s ease-out;
-  }
-  
-  .animate-zoom-in {
-    animation: zoomIn 0.6s ease-out;
-  }
-  
-  .animate-delay-100 {
-    animation-delay: 0.1s;
-  }
-  
-  .animate-delay-200 {
-    animation-delay: 0.2s;
-  }
-  
-  .animate-delay-300 {
-    animation-delay: 0.3s;
-  }
-  
-  /* Keyframe Animations */
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes zoomIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .header-content {
-      flex-direction: column;
-      gap: 24px;
-    }
-  
-    .achievements-stats {
-      min-width: auto;
-      width: 100%;
-      flex-wrap: wrap;
-    }
-  
-    .filter-tabs {
-      justify-content: flex-start;
-    }
-  
-    .achievements-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-  
-    .encouragement-card {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .rarity-items {
-      justify-content: center;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .achievements-page {
-      padding: 16px 0;
-    }
-  
-    .header-text h1 {
-      font-size: 28px;
-    }
-  
-    .achievement-card {
-      padding: 16px;
-    }
-  
-    .achievement-icon {
-      width: 50px;
-      height: 50px;
-    }
-  
-    .encouragement-card {
-      padding: 24px;
-    }
-  }
+}
+
+/* Focus states for accessibility */
+.filter-tab:focus-visible,
+.achievement-card:focus-visible {
+  outline: 3px solid #7C3AED;
+  outline-offset: 2px;
+}
+
+.achievement-card:focus-within {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.5);
+}

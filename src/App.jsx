@@ -17,6 +17,7 @@ import AchievementsPage from "./pages/AchievementsPage";
 // Layout Components
 import Navigation from "./components/layout/Navigation";
 import CharacterAssistant from "./components/characters/CharacterAssistant";
+import { Brain } from "lucide-react";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,8 +33,8 @@ function App() {
   if (isLoading) {
     return (
       <div className="loading-screen">
-        <div className="loading-character">
-          <img src="/logo.svg" alt="Tankebobler" className="loading-logo" />
+        <div className="brand-icon">
+          <Brain size={30} />
         </div>
         <div className="loading-animation">
           <div className="thinking-bubble"></div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useLearning } from "../context/LearningContext";
 import CharacterAvatar from "../components/characters/CharacterAvatar";
+import MainCharacterSofie from "../components/characters/MainCharacterSofie";
 import {
   Brain,
   BookOpen,
@@ -47,23 +48,23 @@ const HomePage = () => {
     }
   };
 
-  const getGreeting = () => {
+  const getSofieGreeting = () => {
     const hour = new Date().getHours();
     const greetings = {
       morning: [
         "God morgen",
-        "Morgenstund har guld i mund",
-        "Klar til en ny dag",
+        "Morgenstund har guld i mund - og visdom!",
+        "Klar til at udforske en ny dag sammen?",
       ],
       afternoon: [
         "God eftermiddag",
-        "Håber du har en fantastisk dag",
-        "Klar til nye eventyr",
+        "Håber du har tænkt dybe tanker i dag!",
+        "Klar til nye filosofiske eventyr?",
       ],
       evening: [
         "God aften",
-        "Tid til aftenens udfordringer",
-        "Lad os lære noget nyt",
+        "Tid til aftenens tankeflugt",
+        "Lad os tænke over dagens mysterier",
       ],
     };
 
@@ -99,7 +100,12 @@ const HomePage = () => {
           </div>
 
           <div className="welcome-character">
-            <CharacterAvatar character="filo" size="xl" mood="excited" />
+            <MainCharacterSofie
+              size="xl"
+              mood="excited"
+              interactive={false}
+              showSpeechBubble={false}
+            />
           </div>
 
           <div className="welcome-content">
@@ -109,7 +115,7 @@ const HomePage = () => {
               <span className="emoji-bounce">🎉</span>
             </h1>
             <p className="welcome-subtitle">
-              Jeg er Filo! Sammen skal vi udforske filosofiens magiske verden!
+              Jeg er Sofie! Sammen skal vi udforske filosofiens magiske verden!
               Er du klar til eventyr? ✨
             </p>
 
@@ -166,14 +172,16 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {/* Hero sektion */}
+      {/* Hero sektion med Sofie */}
       <section className="hero-section">
         <div className="hero-content animate-slide-in-up">
           <div className="hero-text">
             <h1 className="hero-title">
-              {getGreeting()},{" "}
-              <span className="gradient-text">{user.name || "Eventyrer"}</span>!
-              <span className="wave-emoji">👋</span>
+              {getSofieGreeting()},{" "}
+              <span className="gradient-text sofie">
+                {user.name || "Eventyrer"}
+              </span>
+              !<span className="wave-emoji">👋</span>
             </h1>
             <p className="hero-subtitle">
               Du har samlet {user.xp} tankekraft! Fortsæt sådan! 🌟
@@ -181,7 +189,7 @@ const HomePage = () => {
           </div>
 
           <div className="hero-stats">
-            <div className="stat-card animate-slide-in-left animate-delay-100 stat-level">
+            <div className="stat-card animate-slide-in-left animate-delay-100 stat-sofie">
               <div className="stat-icon pulse">
                 <Brain size={24} />
               </div>
@@ -192,7 +200,7 @@ const HomePage = () => {
               <div className="stat-sparkle">✨</div>
             </div>
 
-            <div className="stat-card animate-slide-in-left animate-delay-200 stat-xp">
+            <div className="stat-card animate-slide-in-left animate-delay-200 stat-sofie">
               <div className="stat-icon bounce">
                 <Star size={24} />
               </div>
@@ -203,7 +211,7 @@ const HomePage = () => {
               <div className="stat-sparkle">⚡</div>
             </div>
 
-            <div className="stat-card animate-slide-in-left animate-delay-300 stat-achievements">
+            <div className="stat-card animate-slide-in-left animate-delay-300 stat-sofie">
               <div className="stat-icon rotate">
                 <Trophy size={24} />
               </div>
@@ -217,13 +225,24 @@ const HomePage = () => {
         </div>
 
         <div className="hero-character animate-float">
-          <CharacterAvatar character="filo" size="xl" mood="happy" />
+          <MainCharacterSofie
+            size="xl"
+            mood="happy"
+            interactive={true}
+            showSpeechBubble={true}
+          />
         </div>
       </section>
 
-      {/* Daglig udfordring */}
+      {/* Filosofisk visdomscitat */}
+      <section className="wisdom-quote animate-slide-in-up">
+        <p>"Det eneste jeg ved, er at jeg intet ved"</p>
+        <div className="author">- Sokrates</div>
+      </section>
+
+      {/* Daglig udfordring med Sofie tema */}
       {showDailyChallenge && (
-        <section className="daily-challenge animate-slide-in-up">
+        <section className="daily-challenge sofie-theme animate-slide-in-up">
           <div className="challenge-card gradient-border">
             <button
               className="close-challenge"
@@ -235,17 +254,17 @@ const HomePage = () => {
               <Target size={32} />
             </div>
             <div className="challenge-content">
-              <h3>Dagens Udfordring! 🎯</h3>
+              <h3>Sofies Daglige Udfordring! 🎯</h3>
               <p>Gennemfør 2 lektioner og optjen dobbelt XP!</p>
               <div className="challenge-reward">
                 <Star size={16} />
-                <span>Belønning: 100 XP + Særlig Trofæ</span>
+                <span>Belønning: 100 XP + Filosofi-Trofæ</span>
               </div>
             </div>
-            <button className="btn btn-accent">
+            <Link to="/laeringssti" className="btn btn-accent">
               <Gamepad2 size={16} />
               Tag udfordringen!
-            </button>
+            </Link>
           </div>
         </section>
       )}
@@ -254,7 +273,7 @@ const HomePage = () => {
       <section className="progress-section">
         <div className="card progress-card animate-slide-in-up animate-delay-200">
           <div className="card-header">
-            <h2>Din fremgang</h2>
+            <h2>Din filosofiske rejse</h2>
             <div className="level-badge bounce">
               <Brain size={16} />
               Level {user.level}
@@ -279,7 +298,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="progress-tip">
-              💡 Tip: Gennemfør quizzer for at få bonus XP!
+              💡 Tip: Still flere spørgsmål for at få bonus XP!
             </div>
           </div>
         </div>
@@ -290,10 +309,10 @@ const HomePage = () => {
         <div className="section-header">
           <h2 className="section-title">
             <Sparkles size={28} />
-            Vælg dit eventyr
+            Vælg dit filosofiske eventyr
             <Sparkles size={28} />
           </h2>
-          <p>Hvilken tankesti vil du udforske i dag?</p>
+          <p>Hvilken tankesti vil du udforske sammen med Sofie?</p>
         </div>
 
         <div className="learning-paths-grid">
@@ -382,7 +401,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Fun fact sektion */}
+      {/* Fun fact sektion med filosofisk twist */}
       <section className="fun-fact-section animate-slide-in-up">
         <div className="fun-fact-card">
           <div className="fun-fact-icon">
@@ -390,7 +409,10 @@ const HomePage = () => {
           </div>
           <div className="fun-fact-content">
             <h3>Vidste du?</h3>
-            <p>Filosofi betyder "kærlighed til visdom" på græsk! 🏛️</p>
+            <p>
+              I "Sofies Verden" lærer vi at filosofi betyder "kærlighed til
+              visdom" på græsk! 🏛️
+            </p>
           </div>
         </div>
       </section>
@@ -404,7 +426,7 @@ const HomePage = () => {
             </div>
             <div className="action-content">
               <h3>Min Profil</h3>
-              <p>Se dine stats</p>
+              <p>Se dine filosofiske stats</p>
             </div>
             <div className="action-arrow">→</div>
           </Link>
@@ -418,7 +440,7 @@ const HomePage = () => {
             </div>
             <div className="action-content">
               <h3>Trofæer</h3>
-              <p>Se dine sejre</p>
+              <p>Se dine visdomssejre</p>
             </div>
             <div className="action-arrow">→</div>
           </Link>
@@ -429,3 +451,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+  

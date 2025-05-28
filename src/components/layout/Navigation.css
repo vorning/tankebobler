@@ -97,7 +97,7 @@
   }
   
   .nav-item:hover {
-    background: var(--primary-light);
+    background: #F3F4F6;
     color: var(--primary-color);
     transform: translateY(-1px);
   }
@@ -194,7 +194,7 @@
   
   .mini-progress-bar {
     height: 4px;
-    background: var(--light-gray);
+    background: #F3F4F6;
     border-radius: 2px;
     overflow: hidden;
   }
@@ -232,7 +232,7 @@
   }
   
   .mobile-menu-button:hover {
-    background: var(--light-gray);
+    background: #F3F4F6;
   }
   
   /* Mobile menu */
@@ -265,7 +265,7 @@
     align-items: center;
     gap: 16px;
     padding: 20px;
-    background: var(--light-gray);
+    background: #F3F4F6;
     border-radius: 15px;
     margin-bottom: 20px;
   }
@@ -332,7 +332,7 @@
   }
   
   .mobile-nav-item:hover {
-    background: var(--primary-light);
+    background: #F3F4F6;
     color: var(--primary-color);
   }
   

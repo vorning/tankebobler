@@ -1,135 +1,332 @@
+/* ========================================
+   TANKEBOBLER - KOMPLET BRAND SYSTEM
+   Visuel identitet for Gyldendal 10-14 år
+   ======================================== */
+
 :root {
-  /* Hovedfarver - mere harmoniske */
-  --primary-color: #6366f1;
-  --secondary-color: #8b5cf6;
-  --accent-color: #f59e0b;
+  /* ===== BRAND FARVER ===== */
+  
+  /* Sofie - Hovedkarakter (Guld/Gul tema) */
+  --sofie-primary: #F59E0B;
+  --sofie-secondary: #FBBF24;
+  --sofie-tertiary: #FCD34D;
+  --sofie-light: rgba(245, 158, 11, 0.1);
+  --sofie-medium: rgba(245, 158, 11, 0.3);
+  --sofie-gradient: linear-gradient(135deg, #F59E0B, #FBBF24);
+  --sofie-gradient-hover: linear-gradient(135deg, #D97706, #F59E0B);
 
-  /* Karakterfarver - bedre kontrast */
-  --filo-color: #6366f1;
-  --etika-color: #059669;
-  --historikus-color: #d97706;
-  --logika-color: #2563eb;
+  /* Filo - Filosofi (Lilla tema) */
+  --filo-primary: #7C3AED;
+  --filo-secondary: #8B5CF6;
+  --filo-tertiary: #A78BFA;
+  --filo-light: rgba(124, 58, 237, 0.1);
+  --filo-medium: rgba(124, 58, 237, 0.3);
+  --filo-gradient: linear-gradient(135deg, #7C3AED, #8B5CF6);
+  --filo-gradient-hover: linear-gradient(135deg, #6D28D9, #7C3AED);
 
-  /* Status farver */
-  --success-color: #10b981;
-  --error-color: #ef4444;
-  --warning-color: #f59e0b;
-  --info-color: #3b82f6;
+  /* Etika - Etik (Grøn tema) */
+  --etika-primary: #059669;
+  --etika-secondary: #10B981;
+  --etika-tertiary: #34D399;
+  --etika-light: rgba(5, 150, 105, 0.1);
+  --etika-medium: rgba(5, 150, 105, 0.3);
+  --etika-gradient: linear-gradient(135deg, #059669, #10B981);
+  --etika-gradient-hover: linear-gradient(135deg, #047857, #059669);
 
-  /* Neutrale farver - bedre læsbarhed */
-  --text-dark: #1f2937;
-  --text-gray: #6b7280;
-  --text-light: #9ca3af;
-  --light-gray: #f3f4f6;
-  --medium-gray: #d1d5db;
-  --dark-gray: #374151;
+  /* Historikus - Historie (Orange tema) */
+  --historikus-primary: #D97706;
+  --historikus-secondary: #F97316;
+  --historikus-tertiary: #FB923C;
+  --historikus-light: rgba(217, 119, 6, 0.1);
+  --historikus-medium: rgba(217, 119, 6, 0.3);
+  --historikus-gradient: linear-gradient(135deg, #D97706, #F97316);
+  --historikus-gradient-hover: linear-gradient(135deg, #B45309, #D97706);
 
-  /* Baggrunde - mere harmoniske */
-  --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --bg-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --bg-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --bg-warning: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-
-  /* Lyse versioner til hover-effekter */
-  --primary-light: rgba(99, 102, 241, 0.1);
-  --secondary-light: rgba(139, 92, 246, 0.1);
+  /* ===== SYSTEM FARVER ===== */
+  
+  /* Hovedfarver */
+  --primary-color: #7C3AED;
+  --secondary-color: #EC4899;
+  --accent-color: #F59E0B;
+  
+  /* Status farver - børnevenlige */
+  --success-color: #10B981;
   --success-light: rgba(16, 185, 129, 0.1);
+  --error-color: #EF4444;
   --error-light: rgba(239, 68, 68, 0.1);
+  --warning-color: #F59E0B;
+  --warning-light: rgba(245, 158, 11, 0.1);
+  --info-color: #3B82F6;
+  --info-light: rgba(59, 130, 246, 0.1);
 
-  /* Skygger */
-  --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
-  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
+  /* Neutrale farver - optimeret læsbarhed */
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --text-disabled: #D1D5DB;
+  --text-white: #FFFFFF;
 
-  /* Border radius */
-  --radius-small: 8px;
-  --radius-medium: 12px;
-  --radius-large: 20px;
-  --radius-xl: 30px;
-  --radius-full: 50%;
+  /* Baggrunde */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-muted: #F3F4F6;
+  --bg-disabled: #E5E7EB;
+  
+  /* Brand baggrund - legende gradient */
+  --bg-brand: linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 25%, #FEF3C7 75%, #D1FAE5 100%);
+  --bg-brand-subtle: linear-gradient(135deg, rgba(224, 231, 255, 0.3) 0%, rgba(243, 232, 255, 0.3) 50%, rgba(254, 243, 199, 0.3) 100%);
 
-  /* Spacing */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
-  --space-3xl: 64px;
+  /* ===== TYPOGRAFI ===== */
+  
+  /* Font størrelser - optimeret til børn */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;    /* Basis størrelse for bedre læsbarhed */
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 32px;
+  --text-5xl: 36px;
+  --text-6xl: 42px;
 
-  /* Typography */
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 20px;
-  --font-size-2xl: 24px;
-  --font-size-3xl: 30px;
-  --font-size-4xl: 36px;
-  --font-size-5xl: 48px;
+  /* Font vægte */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Line heights - optimeret læselighed */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
 
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  /* ===== SPACING ===== */
+  
+  /* 8px grid system for konsistent spacing */
+  --space-px: 1px;
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
 
-  /* Z-index layers */
+  /* ===== BORDER RADIUS ===== */
+  
+  /* Børnevenlige, runde hjørner */
+  --radius-none: 0px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* ===== SKYGGER ===== */
+  
+  /* Subtile skygger for dybde */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.18);
+  --shadow-2xl: 0 16px 32px rgba(0, 0, 0, 0.20);
+  
+  /* Karakterspecifikke skygger */
+  --shadow-sofie: 0 8px 25px rgba(245, 158, 11, 0.3);
+  --shadow-filo: 0 8px 25px rgba(124, 58, 237, 0.3);
+  --shadow-etika: 0 8px 25px rgba(5, 150, 105, 0.3);
+  --shadow-historikus: 0 8px 25px rgba(217, 119, 6, 0.3);
+
+  /* ===== ANIMATIONER ===== */
+  
+  /* Transition varighed */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+
+  /* Easing functions - naturlige bevægelser */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ===== Z-INDEX HIERARKI ===== */
+  
+  --z-hide: -1;
+  --z-auto: auto;
+  --z-base: 0;
+  --z-docked: 10;
   --z-dropdown: 1000;
   --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal-backdrop: 1040;
+  --z-banner: 1030;
+  --z-overlay: 1040;
   --z-modal: 1050;
   --z-popover: 1060;
-  --z-tooltip: 1070;
+  --z-skiplink: 1070;
   --z-toast: 1080;
+  --z-tooltip: 1090;
 
-  /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  /* ===== BREAKPOINTS ===== */
+  
+  /* Mobile-first responsive design */
+  --screen-xs: 375px;   /* Små telefoner */
+  --screen-sm: 576px;   /* Store telefoner */
+  --screen-md: 768px;   /* Tablets */
+  --screen-lg: 992px;   /* Små desktops */
+  --screen-xl: 1200px;  /* Store desktops */
+  --screen-2xl: 1400px; /* Ekstra store skærme */
 
-  /* Grid breakpoints */
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
+  /* Container størrelser */
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-2xl: 1320px;
 
-  /* Character-specific gradients - opdaterede farver */
-  --filo-gradient: linear-gradient(45deg, #6366f1, #8b5cf6);
-  --etika-gradient: linear-gradient(45deg, #059669, #10b981);
-  --historikus-gradient: linear-gradient(45deg, #d97706, #f59e0b);
-  --logika-gradient: linear-gradient(45deg, #2563eb, #3b82f6);
+  /* ===== KOMPONENT SPECIFIKKE VARIABLER ===== */
+  
+  /* Knapper */
+  --btn-height-sm: 32px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-height-xl: 56px;
+  
+  --btn-padding-x-sm: 12px;
+  --btn-padding-x-md: 16px;
+  --btn-padding-x-lg: 24px;
+  --btn-padding-x-xl: 32px;
 
-  /* Level colors */
-  --level-1: #10b981;
-  --level-2: #3b82f6;
-  --level-3: #8b5cf6;
-  --level-4: #f59e0b;
-  --level-5: #ef4444;
-  --level-max: #dc2626;
+  /* Input felter */
+  --input-height: 44px;    /* Touch-venlig højde */
+  --input-padding-x: 16px;
+  --input-border-width: 2px;
+  --input-border-color: var(--bg-disabled);
+  --input-border-focus: var(--primary-color);
 
-  /* Mere levende farver for børn */
-  --primary-color: #7c3aed; /* Lilla - mere levende */
-  --secondary-color: #ec4899; /* Pink */
-  --accent-color: #f59e0b; /* Orange */
+  /* Karakteravatarer */
+  --avatar-xs: 24px;
+  --avatar-sm: 32px;
+  --avatar-md: 48px;
+  --avatar-lg: 64px;
+  --avatar-xl: 96px;
+  --avatar-2xl: 128px;
 
-  /* Karakterfarver - mere mættede */
-  --filo-color: #8b5cf6;
-  --etika-color: #10b981;
-  --historikus-color: #f97316;
-  --logika-color: #3b82f6;
+  /* Progress bars */
+  --progress-height: 8px;
+  --progress-height-lg: 12px;
+  --progress-border-radius: var(--radius-full);
 
-  /* Tilføj flere legende farver */
-  --fun-yellow: #fcd34d;
-  --fun-green: #34d399;
-  --fun-blue: #60a5fa;
-  --fun-red: #f87171;
+  /* ===== ACCESSIBILITY ===== */
+  
+  /* Focus ring for keyboard navigation */
+  --focus-ring-width: 3px;
+  --focus-ring-color: var(--primary-color);
+  --focus-ring-offset: 2px;
+  
+  /* Minimum target sizes (følger WCAG guidelines) */
+  --touch-target-min: 44px;
+  --touch-target-preferred: 48px;
 
-  /* Større border radius for mere legende look */
-  --radius-small: 12px;
-  --radius-medium: 16px;
-  --radius-large: 24px;
-  --radius-xl: 32px;
+  /* ===== DARK MODE SUPPORT ===== */
+  
+  /* Kan implementeres senere hvis ønsket */
+  --color-scheme: light;
+
+  /* ===== SPECIAL EFFECTS ===== */
+  
+  /* Glassmorphism effekt til moderne look */
+  --glass-background: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-backdrop-filter: blur(12px);
+
+  /* Gradient overlays til dynamiske baggrunde */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  --gradient-success: linear-gradient(135deg, var(--success-color) 0%, var(--etika-secondary) 100%);
+  --gradient-warning: linear-gradient(135deg, var(--warning-color) 0%, var(--sofie-secondary) 100%);
+  
+  /* Animated gradients til specielle effekter */
+  --rainbow-gradient: linear-gradient(45deg, 
+    #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, 
+    #FECA57, #FF9FF3, #54A0FF);
+}
+
+/* ===== UTILITY KLASSER FOR KONSISTENT BRUG ===== */
+
+/* Karakterspecifikke utility klasser */
+.theme-sofie {
+  --theme-primary: var(--sofie-primary);
+  --theme-secondary: var(--sofie-secondary);
+  --theme-gradient: var(--sofie-gradient);
+  --theme-light: var(--sofie-light);
+  --theme-shadow: var(--shadow-sofie);
+}
+
+.theme-filo {
+  --theme-primary: var(--filo-primary);
+  --theme-secondary: var(--filo-secondary);
+  --theme-gradient: var(--filo-gradient);
+  --theme-light: var(--filo-light);
+  --theme-shadow: var(--shadow-filo);
+}
+
+.theme-etika {
+  --theme-primary: var(--etika-primary);
+  --theme-secondary: var(--etika-secondary);
+  --theme-gradient: var(--etika-gradient);
+  --theme-light: var(--etika-light);
+  --theme-shadow: var(--shadow-etika);
+}
+
+.theme-historikus {
+  --theme-primary: var(--historikus-primary);
+  --theme-secondary: var(--historikus-secondary);
+  --theme-gradient: var(--historikus-gradient);
+  --theme-light: var(--historikus-light);
+  --theme-shadow: var(--shadow-historikus);
+}
+
+/* ===== RESPONSIVE FONT SCALING ===== */
+
+/* Automatisk font scaling til bedre læsbarhed på forskellige enheder */
+html {
+  font-size: 16px; /* Base size for desktop */
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px; /* Lidt mindre på tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px; /* Mindste på mobil men stadig læsbart */
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  :root {
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+    --shadow-2xl: none;
+  }
 }

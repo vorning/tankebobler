@@ -1,162 +1,237 @@
-import { useState, useEffect } from "react";
-import { useUser } from "../../context/UserContext";
-import { useLearning } from "../../context/LearningContext";
-import CharacterAvatar from "./CharacterAvatar";
-import "./CharacterAssistant.css";
-
+import { useState, useEffect, useRef } from "react";
 
 const CharacterAssistant = () => {
-  const { user } = useUser();
-  const { currentLesson } = useLearning();
-  const [isVisible, setIsVisible] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
-  const [character, setCharacter] = useState("filo");
   const [isThinking, setIsThinking] = useState(false);
 
-  // Beskeder baseret på kontekst
-  const messages = {
-    welcome: [
-      "Hej! Jeg er Filo, din filosofiske guide! 🤔",
-      "Velkommen til tankernes verden! Lad os udforske sammen! ✨",
-      "Klar til at dykke ned i de store spørgsmål? 🌟",
-    ],
-    firstTime: [
-      "Wow, det er første gang vi mødes! 😊",
-      "Jeg er så spændt på at lære dig at kende!",
-      "Skal vi begynde med at udforske filosofiens verden sammen?",
-    ],
-    levelUp: [
-      "Fantastisk! Du er steget i level! 🎉",
-      "Din tankekraft vokser! Jeg er så stolt! 💪",
-      "Du bliver klogere og klogere! Fortsæt sådan! ⭐",
-    ],
-    encouragement: [
-      "Du klarer det fantastisk! 💪",
-      "Fortsæt med at tænke dybt! 🧠",
-      "Husk, der er ingen dumme spørgsmål! 💭",
-      "Du er på vej til at blive en rigtig tænker! 🌟",
-    ],
-    lessonStart: [
-      "Lad os dykke ned i denne spændende lektion! 📚",
-      "Jeg er her for at hjælpe dig hele vejen! 🤝",
-      "Hold øje med de vigtigste pointer! 👀",
-    ],
-    quiz: [
-      "Tid til at teste din viden! Du kan sagtens klare det! 💪",
-      "Tænk dig godt om - jeg tror på dig! 🤔",
-      "Husk, det handler om at lære, ikke om at være perfekt! 😊",
-    ],
-    break: [
-      "Tag en lille pause hvis du har brug for det! 😌",
-      "Din hjerne har brug for tid til at processere det nye! 🧠",
-      "Kom tilbage når du er klar til mere! 👋",
-    ],
-  };
+  // Refs til at holde styr på timers
+  const thinkingTimer = useRef(null);
+  const hideTimer = useRef(null);
 
-  // Vis karakter ved specifikke begivenheder
+  const messages = [
+    "Du klarer det godt! 💪",
+    "Fortsæt sådan! 🌟",
+    "Godt tænkt! 💭",
+    "Du er på rette vej! 🎯",
+    "Tag en pause hvis du har brug for det! 😌",
+    "Du lærer så meget! 🧠",
+    "Jeg tror på dig! ✨",
+  ];
+
+  // Vis velkomstbesked efter 3 sekunder
   useEffect(() => {
-    if (!user.created) {
-      showMessage("firstTime");
-    } else {
-      showMessage("welcome");
-    }
+    const timer = setTimeout(() => {
+      handleClick();
+    }, 3000);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Reagér på level up
+  // Cleanup timers ved unmount
   useEffect(() => {
-    if (user.level > 1) {
-      showMessage("levelUp", 3000);
-    }
-  }, [user.level]);
+    return () => {
+      if (thinkingTimer.current) clearTimeout(thinkingTimer.current);
+      if (hideTimer.current) clearTimeout(hideTimer.current);
+    };
+  }, []);
 
-  // Reagér på nye lektioner
-  useEffect(() => {
-    if (currentLesson) {
-      setTimeout(() => {
-        showMessage("lessonStart", 4000);
-      }, 1000);
-    }
-  }, [currentLesson]);
+  const handleClick = () => {
+    // Clear eksisterende timers
+    if (thinkingTimer.current) clearTimeout(thinkingTimer.current);
+    if (hideTimer.current) clearTimeout(hideTimer.current);
 
-  const showMessage = (messageType, duration = 5000) => {
-    const messageList = messages[messageType] || messages.encouragement;
-    const randomMessage =
-      messageList[Math.floor(Math.random() * messageList.length)];
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 
     setIsThinking(true);
-    setIsVisible(true);
+    setShowMessage(true);
 
-    setTimeout(() => {
+    // Ny thinking timer
+    thinkingTimer.current = setTimeout(() => {
       setCurrentMessage(randomMessage);
       setIsThinking(false);
-    }, 1000);
+    }, 800);
 
-    setTimeout(() => {
-      setIsVisible(false);
-    }, duration);
+    // Ny hide timer
+    hideTimer.current = setTimeout(() => {
+      setShowMessage(false);
+    }, 4800); // 800ms thinking + 4000ms message = 4800ms total
   };
-
-  const handleCharacterClick = () => {
-    const messageTypes = ["encouragement", "break"];
-    const randomType =
-      messageTypes[Math.floor(Math.random() * messageTypes.length)];
-    showMessage(randomType);
-  };
-
-  const getCharacterForLesson = () => {
-    if (!currentLesson) return "filo";
-
-    // Vælg karakter baseret på lektionstype
-    if (currentLesson.id.includes("etik")) return "etika";
-    if (currentLesson.id.includes("historie")) return "historikus";
-    if (currentLesson.id.includes("logik")) return "logika";
-    return "filo";
-  };
-
-  useEffect(() => {
-    setCharacter(getCharacterForLesson());
-  }, [currentLesson]);
 
   return (
-    <div className={`character-assistant ${isVisible ? "visible" : "hidden"}`}>
-      {isVisible && (
-        <div className="character-speech-bubble animate-slide-in-up">
-          <div className="speech-content">
+    <>
+      {/* Inline CSS for no conflicts */}
+      <style>{`
+        .debug-character-assistant {
+          position: fixed;
+          bottom: 25px;
+          right: 25px;
+          z-index: 9999;
+          width: 70px;
+          height: 70px;
+          font-family: 'Fredoka', sans-serif;
+        }
+        
+        .debug-character-circle {
+          width: 70px;
+          height: 70px;
+          background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+          border-radius: 50%;
+          border: 3px solid #9333EA;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-size: 24px;
+          box-shadow: 0 4px 16px rgba(147, 51, 234, 0.2);
+          transition: all 0.3s ease;
+          position: relative;
+        }
+        
+        .debug-character-circle:hover {
+          transform: scale(1.05);
+        }
+        
+        .debug-character-circle:active {
+          transform: scale(0.95);
+        }
+        
+        .debug-speech-bubble {
+          position: absolute;
+          bottom: 80px;
+          right: -10px;
+          background: white;
+          border: 2px solid #E9D5FF;
+          border-radius: 16px;
+          padding: 14px 18px;
+          min-width: 200px;
+          max-width: 280px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+          font-family: 'Fredoka', sans-serif;
+          font-size: 14px;
+          color: #1F2937;
+          animation: slideInUp 0.4s ease-out;
+        }
+        
+        .debug-speech-bubble::after {
+          content: '';
+          position: absolute;
+          bottom: -6px;
+          right: 40px;
+          width: 0;
+          height: 0;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-top: 7px solid white;
+        }
+        
+        .debug-thinking-dots {
+          display: flex;
+          gap: 4px;
+          justify-content: center;
+          align-items: center;
+          height: 20px;
+        }
+        
+        .debug-thinking-dots span {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #9333EA;
+          animation: thinkingPulse 1.4s ease-in-out infinite;
+        }
+        
+        .debug-thinking-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .debug-thinking-dots span:nth-child(2) { animation-delay: -0.16s; }
+        .debug-thinking-dots span:nth-child(3) { animation-delay: 0s; }
+        
+        .debug-floating-animation {
+          animation: debugFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes thinkingPulse {
+          0%, 80%, 100% {
+            transform: scale(0.8);
+            opacity: 0.5;
+          }
+          40% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes debugFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+          .debug-character-assistant {
+            bottom: 20px;
+            right: 20px;
+          }
+          .debug-speech-bubble {
+            max-width: 250px;
+            right: -15px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .debug-character-assistant {
+            bottom: 15px;
+            right: 15px;
+          }
+          .debug-character-circle {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+          }
+          .debug-speech-bubble {
+            max-width: 200px;
+            right: -20px;
+            font-size: 12px;
+            padding: 10px 14px;
+          }
+        }
+      `}</style>
+
+      <div className="debug-character-assistant">
+        {showMessage && (
+          <div className="debug-speech-bubble">
             {isThinking ? (
-              <div className="thinking-dots">
+              <div className="debug-thinking-dots">
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
             ) : (
-              <p>{currentMessage}</p>
+              <p style={{ margin: 0, lineHeight: 1.4 }}>{currentMessage}</p>
             )}
           </div>
-          <div className="speech-arrow"></div>
-        </div>
-      )}
-
-      <div
-        className={`character-container ${
-          isThinking ? "animate-thinking" : "animate-float"
-        }`}
-        onClick={handleCharacterClick}
-      >
-        <CharacterAvatar character={character} size="large" />
-
-        {/* Notification dot for vigtige beskeder */}
-        {!isVisible && user.level > 1 && (
-          <div className="notification-dot animate-pulse"></div>
         )}
-      </div>
 
-      {/* Floating bubbles omkring karakteren */}
-      <div className="character-bubbles">
-        <div className="floating-bubble small"></div>
-        <div className="floating-bubble medium"></div>
-        <div className="floating-bubble large"></div>
+        <div
+          className={`debug-character-circle ${
+            !isThinking ? "debug-floating-animation" : ""
+          }`}
+          onClick={handleClick}
+          title="Klik for motivation!"
+        >
+          🤔
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
