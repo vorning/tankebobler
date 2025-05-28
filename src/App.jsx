@@ -1,6 +1,5 @@
-// App.jsx
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -9,7 +8,7 @@ import { useState, useEffect } from "react";
 import "./styles/global.css";
 
 // Contexts
-import { UserProvider } from "./context/UserContext";
+import { UserProvider, useUser } from "./context/UserContext";
 import { LearningProvider } from "./context/LearningContext";
 import { SoundProvider } from "./context/SoundContext";
 
@@ -19,43 +18,31 @@ import ProfilePage from "./pages/ProfilePage";
 import LearningPathPage from "./pages/LearningPathPage";
 import LessonPage from "./pages/LessonPage";
 import AchievementsPage from "./pages/AchievementsPage";
-import WelcomePage from "./pages/WelcomePage";
+import WelcomePage from "./pages/WelkomePage";
 
-// Layout
+// Layout Components
 import Navigation from "./components/layout/Navigation";
 import CharacterAssistant from "./components/characters/CharacterAssistant";
 import { Brain } from "lucide-react";
-import { useUser } from "./context/UserContext";
 
+// Routes wrapper der kan bruge context til at kontrollere routing
 function AppRoutes() {
   const { user } = useUser();
 
-  // 👇 Hvis bruger ikke er oprettet, omdiriger til /velkommen
-  if (!user.created) {
-    return (
-      <Routes>
-        <Route path="/velkommen" element={<WelcomePage />} />
-        <Route path="*" element={<Navigate to="/velkommen" replace />} />
-      </Routes>
-    );
-  }
-
-  // 👇 Hvis bruger er oprettet, vis det normale app-layout
   return (
-    <div className="app-container">
-      <Navigation />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/profil" element={<ProfilePage />} />
-          <Route path="/laeringssti" element={<LearningPathPage />} />
-          <Route path="/lektion/:id" element={<LessonPage />} />
-          <Route path="/praestation" element={<AchievementsPage />} />
-          <Route path="/velkommen" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-      <CharacterAssistant />
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={user.created ? <HomePage /> : <Navigate to="/velkomst" />}
+      />
+      <Route path="/velkomst" element={<WelcomePage />} />
+      <Route path="/profil" element={<ProfilePage />} />
+      <Route path="/laeringssti" element={<LearningPathPage />} />
+      <Route path="/lektion/:id" element={<LessonPage />} />
+      <Route path="/praestation" element={<AchievementsPage />} />
+      {/* Catch-all route for at håndtere ukendte stier */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
@@ -94,7 +81,13 @@ function App() {
       <SoundProvider>
         <UserProvider>
           <LearningProvider>
-            <AppRoutes />
+            <div className="app-container">
+              <Navigation />
+              <main className="main-content">
+                <AppRoutes />
+              </main>
+              <CharacterAssistant />
+            </div>
           </LearningProvider>
         </UserProvider>
       </SoundProvider>
