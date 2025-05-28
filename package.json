@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://vorning.github.io/tankebobler",
+  "homepage": "https://vorning.github.io/tankebobler/",
   "scripts": {
     "build": "vite build",
     "postbuild": "cp dist/index.html dist/404.html",

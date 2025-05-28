@@ -21,32 +21,13 @@ import "./HomePage.css";
 const HomePage = () => {
   const { user, updateUser } = useUser();
   const { availablePaths, getPathProgress } = useLearning();
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [userAge, setUserAge] = useState("");
   const [animateProgress, setAnimateProgress] = useState(false);
   const [showDailyChallenge, setShowDailyChallenge] = useState(true);
 
   useEffect(() => {
-    if (!user.created) {
-      setShowWelcome(true);
-    } else {
-      setShowWelcome(false);
-      setTimeout(() => setAnimateProgress(true), 100);
-    }
-  }, [user.created]);
-
-  const handleCreateProfile = (e) => {
-    e.preventDefault();
-    if (userName.trim() && userAge) {
-      updateUser({
-        name: userName.trim(),
-        age: parseInt(userAge),
-        created: true,
-      });
-      setShowWelcome(false);
-    }
-  };
+    // Kun animate progress - ingen velkomst logik længere
+    setTimeout(() => setAnimateProgress(true), 100);
+  }, []);
 
   const getSofieGreeting = () => {
     const hour = new Date().getHours();
@@ -89,86 +70,6 @@ const HomePage = () => {
     const xpForNextLevel = user.level * 100;
     return Math.round((user.xp / xpForNextLevel) * 100);
   };
-
-  // Velkommen modal for nye brugere
-  if (showWelcome) {
-    return (
-      <div className="welcome-screen">
-        <div className="welcome-container animate-fade-in">
-          <div className="welcome-sparkles">
-            <Sparkles size={32} className="sparkle-icon animate-sparkle" />
-          </div>
-
-          <div className="welcome-character">
-            <MainCharacterSofie
-              size="xl"
-              mood="excited"
-              interactive={false}
-              showSpeechBubble={false}
-            />
-          </div>
-
-          <div className="welcome-content">
-            <h1 className="welcome-title">
-              Velkommen til{" "}
-              <span className="gradient-text rainbow">Tankebobler</span>!
-              <span className="emoji-bounce">🎉</span>
-            </h1>
-            <p className="welcome-subtitle">
-              Jeg er Sofie! Sammen skal vi udforske filosofiens magiske verden!
-              Er du klar til eventyr? ✨
-            </p>
-
-            <form onSubmit={handleCreateProfile} className="welcome-form">
-              <div className="form-group">
-                <label htmlFor="name">Hvad skal jeg kalde dig?</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  placeholder="Dit seje navn..."
-                  required
-                  maxLength={20}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="age">Hvor gammel er du?</label>
-                <select
-                  id="age"
-                  value={userAge}
-                  onChange={(e) => setUserAge(e.target.value)}
-                  required
-                >
-                  <option value="">Vælg din alder</option>
-                  {Array.from({ length: 5 }, (_, i) => i + 10).map((age) => (
-                    <option key={age} value={age}>
-                      {age} år
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-primary btn-large btn-glow"
-              >
-                <Rocket size={20} />
-                Start dit eventyr!
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div className="floating-bubbles">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="floating-bubble"></div>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="home-page">
@@ -451,4 +352,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-  
