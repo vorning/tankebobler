@@ -1,5 +1,6 @@
 {
   "name": "tankebobler",
+  "homepage": "https://vorning.github.io/tankebobler/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,15 +8,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "framer-motion": "^10.16.4",
+    "gh-pages": "^6.3.0",
+    "lucide-react": "^0.263.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
-    "framer-motion": "^10.16.4",
-    "styled-components": "^6.0.7",
-    "lucide-react": "^0.263.1"
+    "styled-components": "^6.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
