@@ -271,7 +271,7 @@
   }
   
   .choice-btn:hover {
-    background: var(--secondary-color);
+    opacity: 0.8;
     transform: translateY(-1px);
   }
   

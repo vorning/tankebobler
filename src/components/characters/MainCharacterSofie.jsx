@@ -240,7 +240,11 @@ const MainCharacterSofie = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          cursor: interactive ? "pointer" : "default",
+          userSelect: "none", // Tilføj denne linje
+          WebkitUserSelect: "none", // For Safari
+          MozUserSelect: "none", // For Firefox
+          cursor: "pointer", // Tilføj denne linje
+
           boxShadow: isHovering
             ? "0 12px 30px rgba(245, 158, 11, 0.4), 0 0 0 4px rgba(245, 158, 11, 0.2)"
             : "0 8px 25px rgba(245, 158, 11, 0.3)",
