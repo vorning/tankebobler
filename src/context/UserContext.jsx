@@ -28,14 +28,14 @@ export const UserProvider = ({ children }) => {
   }, [user]);
 
   // Funktion til at oprette eller opdatere brugerprofil
-  const updateUser = (data) => {
-    setUser((prev) => ({
-      ...prev,
-      ...data,
-      created: data.created !== undefined ? data.created : true,
-    }));
-  };
-  
+const updateUser = (data) => {
+  setUser((prev) => ({
+    ...prev,
+    ...data,
+    created: data.created !== undefined ? data.created : true,
+  }));
+};
+
 
   // Funktion til at tilføje XP og håndtere level-up
   const addXP = (amount) => {
