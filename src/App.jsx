@@ -18,7 +18,7 @@ import ProfilePage from "./pages/ProfilePage";
 import LearningPathPage from "./pages/LearningPathPage";
 import LessonPage from "./pages/LessonPage";
 import AchievementsPage from "./pages/AchievementsPage";
-import WelcomePage from "./pages/WelkomePage";
+import WelcomePage from "./pages/WelcomePage";
 
 // Layout Components
 import Navigation from "./components/layout/Navigation";
