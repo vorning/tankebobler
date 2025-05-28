@@ -32,9 +32,10 @@ export const UserProvider = ({ children }) => {
     setUser((prev) => ({
       ...prev,
       ...data,
-      created: true,
+      created: data.created !== undefined ? data.created : true,
     }));
   };
+  
 
   // Funktion til at tilføje XP og håndtere level-up
   const addXP = (amount) => {
